@@ -13,7 +13,7 @@ class Highscore extends React.Component {
         fetch(`http://localhost:8080/stats/${this.props.rsn}`)
             .then(response => response.json())
             .then(data => {
-            this.setState({ hs: data, loading: false });
+                this.setState({ hs: data, loading: false });
             });
       }
 
