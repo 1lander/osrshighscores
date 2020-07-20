@@ -1,23 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
 
-export default function NameForm() {
-  const [rsn, setRsn] = useState("");
+export default class RsnForm extends React.Component {
   
-  const handleSubmit = (event) => {
-      event.preventDefault();
-      console.log(rsn)
+  constructor(props) {
+    super(props);
+    this.state = {rsn: ""};
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handlechange = this.handlechange.bind(this);
   }
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        RSN:
-        <input
-          type="text"
-          value={rsn}
-          onChange={e => setRsn(e.target.value)}
-        />
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
-  );
+
+  handleSubmit(e){
+      e.preventDefault();
+      this.props.setRsn(this.state.rsn);
+  }
+
+  handlechange(e){
+    this.setState({rsn: e.target.value})
+}
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          RSN:
+          <input
+            type="text"
+            value={this.state.rsn}
+            onChange={this.handlechange}
+            //onChange={e => this.props.setRsn(e.target.value)}
+          />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
 }

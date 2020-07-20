@@ -1,26 +1,29 @@
 import React from 'react';
 
-class Highscore extends React.Component {
+export default class Highscore extends React.Component {
 
     constructor(props){
         super(props);
         this.state = {
+            loading: true,
             hs: ""
         }
     }
 
-    componentDidMount() {
-        fetch(`http://localhost:8080/stats/${this.props.rsn}`)
+    componentDidUpdate(){
+        if(this.props.rsn !== ""){
+            fetch(`http://localhost:8080/stats/${this.props.rsn}`)
             .then(response => response.json())
             .then(data => {
                 this.setState({ hs: data, loading: false });
+                console.log(data)
             });
-      }
+        }
+    }
 
     render() {
-        console.log(this.state.hs)
-        return <h2>test</h2>;
+       return(
+         this.state.loading === false && <h2>{this.props.rsn}</h2>
+      );
     }
   }
-
-export default Highscore;
