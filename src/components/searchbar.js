@@ -11,7 +11,11 @@ export default class RsnForm extends React.Component {
 
   handleSubmit(e){
       e.preventDefault();
-      this.props.setRsn(this.state.rsn);
+      fetch(`http://localhost:8080/stats/${this.state.rsn}`)
+        .then(response => response.json())
+        .then(data => {
+            this.props.setPlayerdata(data.main)
+        });
   }
 
   handlechange(e){
@@ -27,7 +31,6 @@ export default class RsnForm extends React.Component {
             type="text"
             value={this.state.rsn}
             onChange={this.handlechange}
-            //onChange={e => this.props.setRsn(e.target.value)}
           />
         </label>
         <input type="submit" value="Submit" />

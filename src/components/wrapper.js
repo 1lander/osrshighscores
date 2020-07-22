@@ -3,12 +3,16 @@ import Highscore from './highscore';
 import Searchbar from './searchbar';
 
 export default function Wrapper() {
-  const [rsn, setRsn] = useState("");
+  const [playerData, setPlayerdata] = useState();
 
   return (
     <div>
-      <Searchbar setRsn={setRsn} rsn={rsn}/>
-      <Highscore rsn={rsn} />
+      <Searchbar 
+        setPlayerdata={setPlayerdata} 
+        playerData={playerData}
+      />
+
+      {playerData && <Highscore playerData={playerData} />}
     </div>
   );
 }
