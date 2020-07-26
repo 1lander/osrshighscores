@@ -2,9 +2,15 @@ import React, { useState }  from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Highscore from './highscore';
 import Searchbar from './searchbar';
-import Grid from '@material-ui/core/Grid';
+import Skillinfo from './skillinfo';
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -27,18 +33,24 @@ export default function Wrapper() {
 
   return (
     <Paper className={classes.paper}>
-      <Grid container>
-        <Searchbar
-          className={classes.searchbar}
-          setPlayerdata={setPlayerdata} 
-          playerData={playerData}
-          setPressed={setPressed}
-        />
-      </Grid>
-      <Grid container>
-        {pressed ? <CircularProgress /> : <React.Fragment />}
-        {playerData && <Highscore playerData={playerData} />}
-      </Grid>
+      <Searchbar
+        className={classes.searchbar}
+        setPlayerdata={setPlayerdata} 
+        playerData={playerData}
+        setPressed={setPressed}
+      />
+      {pressed ? <CircularProgress /> : <React.Fragment />}
+      {playerData && <Highscore playerData={playerData} />}
+      <Router>
+        <Switch>
+            <Route path="/highscores">
+              <Highscore />
+            </Route>
+            <Route path="/skillinfo">
+              <Skillinfo />
+            </Route>
+          </Switch>
+      </Router>
     </Paper>
   );
 }
