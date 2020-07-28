@@ -15,11 +15,18 @@ export default class RsnForm extends React.Component {
   handleSubmit(e){
       e.preventDefault();
       this.props.setPressed(true)
-      fetch(`http://localhost:8080/stats/${this.state.rsn}`)
-        .then(response => response.json())
-        .then(data => {
-            let s = data.main.skills;
 
+      fetch(`http://localhost:8080/stats/${this.state.rsn}`)
+        .then(response => {
+          if (response.ok){
+            return response.json();
+          } else {
+            this.props.setPressed(false)
+            return Promise.reject('This rsn does not exist or is not on the highscores')
+          }
+        }).then(data => {
+            let s = data.main.skills;
+            console.log(data.main);
             this.props.setPlayerdata([
                 {id: 1, name: "overall", level:s.overall.level, xp:s.overall.xp, rank:s.overall.rank},
                 {id: 2, name: "attack", level:s.attack.level, xp:s.attack.xp, rank:s.attack.rank},
@@ -47,7 +54,7 @@ export default class RsnForm extends React.Component {
                 {id: 24, name: "construction", level:s.construction.level, xp:s.construction.xp, rank:s.construction.rank}
             ]);
             this.props.setPressed(false)
-        });
+        }).catch(error => console.log('error is', error));
   }
 
   handlechange(e){
