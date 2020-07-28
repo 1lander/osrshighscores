@@ -12,7 +12,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,14 +29,40 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function App() {
-  const [playerData, setPlayerdata] = useState();
+  let emptyPlayer = [
+      {id: 1, name: "overall", level:1, xp:0, rank:null},
+      {id: 2, name: "attack", level:1, xp:0, rank:null},
+      {id: 3, name: "defence", level:1, xp:0, rank:null},
+      {id: 4, name: "strength", level:1, xp:0, rank:null},
+      {id: 5, name: "hitpoints", level:1, xp:0, rank:null},
+      {id: 6, name: "ranged", level:1, xp:0, rank:null},
+      {id: 7, name: "prayer", level:1, xp:0, rank:null},
+      {id: 8, name: "magic", level:1, xp:0, rank:null},
+      {id: 9, name: "cooking", level:1, xp:0, rank:null},
+      {id: 10, name: "woodcutting", level:1, xp:0, rank:null},
+      {id: 11, name: "fletching", level:1, xp:0, rank:null},
+      {id: 12, name: "fishing", level:1, xp:0, rank:null},
+      {id: 13, name: "firemaking", level:1, xp:0, rank:null},
+      {id: 14, name: "crafting", level:1, xp:0, rank:null},
+      {id: 15, name: "smithing", level:1, xp:0, rank:null},
+      {id: 16, name: "mining", level:1, xp:0, rank:null},
+      {id: 17, name: "herblore", level:1, xp:0, rank:null},
+      {id: 18, name: "agility", level:1, xp:0, rank:null},
+      {id: 19, name: "thieving", level:1, xp:0, rank:null},
+      {id: 20, name: "slayer", level:1, xp:0, rank:null},
+      {id: 21, name: "farming", level:1, xp:0, rank:null},
+      {id: 22, name: "runecraft", level:1, xp:0, rank:null},
+      {id: 23, name: "hunter", level:1, xp:0, rank:null},
+      {id: 24, name: "construction", level:1, xp:0, rank:null}
+  ];
+
+  const [playerData, setPlayerdata] = useState(emptyPlayer);
   const [pressed, setPressed] = useState(false);
   const classes = useStyles();
 
   return (
     <div className="App">
       <Navbar/>
-
       <Paper className={classes.paper}>
         <Searchbar
           className={classes.searchbar}
@@ -57,6 +82,7 @@ function App() {
             </Route>
           </Switch>
         </Router>}
+
       </Paper>
     </div>
   );
