@@ -29,13 +29,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function App() {
+
   let emptyPlayer = [
       {id: 1, name: "overall", level:1, xp:0, rank:null, color: "#32a852"},
-      {id: 2, name: "attack", level:1, xp:0, rank:null, color: "#3f30b3"},
-      {id: 3, name: "defence", level:1, xp:0, rank:null, color: "#b33094"},
-      {id: 4, name: "strength", level:1, xp:0, rank:null, color: "#633f5b"},
-      {id: 5, name: "hitpoints", level:1, xp:0, rank:null, color: "#bcc423"},
-      {id: 6, name: "ranged", level:1, xp:0, rank:null, color: "#32a852"},
+      {id: 2, name: "attack", level:1, xp:0, rank:null, color: "#f21202"},
+      {id: 3, name: "defence", level:1, xp:0, rank:null, color: "#74e4f2"},
+      {id: 4, name: "strength", level:1, xp:0, rank:null, color: "#338239"},
+      {id: 5, name: "hitpoints", level:10, xp:1154, rank:null, color: "#ccbebe"},
+      {id: 6, name: "ranged", level:1, xp:0, rank:null, color: "#20692c"},
       {id: 7, name: "prayer", level:1, xp:0, rank:null, color: "#32a852"},
       {id: 8, name: "magic", level:1, xp:0, rank:null, color: "#32a852"},
       {id: 9, name: "cooking", level:1, xp:0, rank:null, color: "#32a852"},
@@ -82,7 +83,6 @@ function App() {
             </Route>
           </Switch>
         </Router>}
-
       </Paper>
     </div>
   );

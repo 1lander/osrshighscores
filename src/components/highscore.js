@@ -4,61 +4,80 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Button } from '@material-ui/core';
-
+import { makeStyles } from '@material-ui/core/styles';
 import {
     BrowserRouter as Router,
     Link,
   } from "react-router-dom";
 
+  const useStyles = makeStyles({
+      root: {
+        height: '20px',
+        color: '#ccbebe'
+      },
+      barColorPrimary: { backgroundColor: props => props.color}
+    }
+  );
+
 function formatXp(xp, scale){
     if(scale === 99){
+      if(xp > 13034431){
+        xp = 13034431
+      }
         return xp/130344.31;
     }else{
         return xp/2000000
     }
 }
 
-class Levelview extends React.Component {
-    render() {
-       return(
-        <Paper style={{marginBottom: "10px", backgroundColor: this.props.color}}>
-        <Grid
-            container
-            direction="row"
-            justify="flex-start"
-            alignItems="center"
-        >
-            <Grid item xs>
-                <Typography>
-                    {this.props.name}
-                </Typography>
-            </Grid>
-            <Grid item xs>
-                <Typography>
-                    {this.props.level}
-                </Typography>
-            </Grid>
-            <Grid item xs>
-                <LinearProgress 
-                    variant="determinate" 
-                    value={formatXp(this.props.xp, 99)}
-                    style={{
-                        colorPrimary: "red"
-                    }}
-                />
-            </Grid>
-            <Grid item xs>
-                <Link to={{
-                    pathname: "/skillinfo",
-                    skillProps: {
-                        skill: this.props.skill
-                    }
-                }}>more</Link>
-            </Grid>
-        </Grid>
-        </Paper>
-      );
-    }
+
+function Levelview(props){
+
+      const classes = useStyles(props);
+
+      return(
+      <Paper style={{marginBottom: "10px"}}>
+      <Grid
+          container
+          direction="row"
+          justify="flex-start"
+          alignItems="center"
+      >
+          <Grid item xs>
+              <Typography>
+                  {props.name}
+              </Typography>
+          </Grid>
+          <Grid item xs>
+              <Typography>
+                  {props.level}
+              </Typography>
+          </Grid>
+          <Grid item xs>
+              <LinearProgress 
+                  classes={{root: classes.root, barColorPrimary: classes.barColorPrimary}}
+                  variant="determinate" 
+                  value={formatXp(props.xp, 99)}
+              />
+          </Grid>
+          <Grid item xs>
+              <Link
+                style={{textDecoration: 'none'}}
+                to={{
+                  pathname: "/skillinfo",
+                  skillProps: {
+                      skill: props.skill
+                }}}>
+                <Button
+                  style={{
+                    background: props.color,
+                  }}
+                >more</Button>
+              </Link>
+          </Grid>
+      </Grid>
+      </Paper>
+    );
   }
 
 export default class Highscore extends React.Component {
