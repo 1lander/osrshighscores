@@ -46,6 +46,8 @@ export default class RsnForm extends React.Component {
               artisan: ["cooking","smithing","fletching","firemaking","herblore","crafting","runecraft","construction"],
               support: ["agility","thieving","slayer"]
             }
+            let overallLevelThreshold = [500,750,1250,1500,1750,2000,2200,2277]
+            let overallXpThreshold = [1000000,10000000,50000000,100000000,150000000,200000000]
 
             for(const skill in s){
               //calculate amount maxed for each type of skill
@@ -55,17 +57,31 @@ export default class RsnForm extends React.Component {
               skills.push({level: s[skill].level, name: skill})
             }
             
-            //-all: 20,30,40,50,60,70,80,90+
-            for (var i = 20; i < 90; i+=10) {
-              if(skills.filter((a) => a.level >= i).length === 23){
+            for (var i = 20; i < 100; i+=10) {
+              if(skills.filter((a) => a.level >= i).length === 24){
                 var minSkill = i;
               }
             }
 
-            console.log(amountMaxed)
+            for (i = 0; i < overallLevelThreshold.length; i++) {
+              if(s.overall.level > overallLevelThreshold[i]){
+                var minTotallvl = overallLevelThreshold[i]
+              }
+            }
+
+            for (i = 0; i < overallXpThreshold.length; i++) {
+              if(s.overall.xp > overallXpThreshold[i]){
+                var minTotalxp = overallXpThreshold[i]
+              }
+            }
 
             this.props.setPlayerdata({
-              achievments: {minSkill: 20, minTotalxp: 1000000, minTotallvl: 500, amountMaxed, combat: false, gatherer: false, artisan: false, support: false},
+              achievments: {
+                minSkill,
+                minTotalxp, 
+                minTotallvl, 
+                amountMaxed
+              },
               overall: {id: 1, name: "overall", level:s.overall.level, xp:s.overall.xp, rank:s.overall.rank, color: 'black'},
               skills: [
                 {id: 2, name: "attack", level:s.attack.level, xp:s.attack.xp, rank:s.attack.rank, color: "#9b2007"},

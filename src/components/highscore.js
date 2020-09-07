@@ -41,7 +41,7 @@ function calculateOverallXp(skills){
   })
   return maxedSkillsxp/2997919.13
 }
-
+/*
 function skillsToMax(skills){
   let maxedSkills = {maxed: 0, notmaxed: 0};
   skills.map((s) => {
@@ -52,7 +52,7 @@ function skillsToMax(skills){
     }
   })
   return maxedSkills
-}
+}*/
 
 function Sort(skills, state){
   if(state === 'desc'){
@@ -112,6 +112,7 @@ function Levelview(props){
 
 function Overallview(props){
     const classes = useStyles(props);
+    console.log(props.achievments);
     return(
     <Paper style={{marginBottom: "10px"}}>
     <Grid
@@ -145,9 +146,11 @@ function Overallview(props){
         alignItems="center"
     >
         <Grid item xs>
-            <Typography variant="h5">
-                Maxed stats: {props.maxedStats.maxed}
-            </Typography>
+            {/*<Typography>
+                Maxed stats: {props.achievments.amountMaxed.all}
+                All stats are {props.achievments.minSkill}+
+                This player can access {props.achievments.minTotallvl} total worlds
+            </Typography>*/}
         </Grid>
         <Grid item xs>
             <Typography variant="h5">
@@ -174,11 +177,12 @@ export default class Highscore extends React.Component {
     }
 
     componentDidMount(){
-        console.log("component mounted")
+        console.log("mounted")
     }
 
     render() {
         const overall = this.props.playerData.overall;
+        const achievments = this.props.playerData.achievments;
         const skills = this.props.playerData.skills;
         return(
            <div>
@@ -190,7 +194,7 @@ export default class Highscore extends React.Component {
                 rank={overall.rank} 
                 color={overall.color} 
                 formattedXp={calculateOverallXp(skills)}
-                maxedStats={skillsToMax(skills)}
+                achievments={achievments}
               />
               {skills.map((s) => <Levelview key={s.id} name={s.name} level={s.level} xp={s.xp} rank={s.rank} skill={s} color={s.color} />)}
            </div>
