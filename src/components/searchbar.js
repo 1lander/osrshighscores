@@ -26,7 +26,46 @@ export default class RsnForm extends React.Component {
           }
         }).then(data => {
             let s = data.main.skills;
+            /*
+            MEDALS:
+            -all: 20,30,40,50,60,70,80,90+
+            -overall: 1m,10m,50m,100m,150m,200m
+            -total lvl: 500,750,1250,1500,1750,2000,2200,2277(MAXED)
+            -amount maxed: 1,2,5,10,15,20,MAXED
+
+            -maxed combat: 99 mage,rangen,attack,strength,defence,prayer
+            -gathering: 99 mining,fishing,woodcutting,hunter,farming
+            -artisan: cooking,smithing,fletching,firemaking,herblore,crafting,runecrafting,construction
+            -support: agility,thieving,slayer
+            */
+            let skills = [];
+            let amountMaxed = {all: 0,combat: 0, artisan: 0, support: 0, gathering: 0};
+            let skillTypes = {
+              combat: ["attack","strength","defence","magic","ranged","prayer","hitpoints"], 
+              gathering: ["mining","fishing","woodcutting","hunter","farming"],
+              artisan: ["cooking","smithing","fletching","firemaking","herblore","crafting","runecraft","construction"],
+              support: ["agility","thieving","slayer"]
+            }
+
+            for(const skill in s){
+              //calculate amount maxed for each type of skill
+              for(const type in skillTypes){
+                if(skillTypes[type].includes(skill) && s[skill].level === 99) {amountMaxed[type]++; amountMaxed.all++};
+              }
+              skills.push({level: s[skill].level, name: skill})
+            }
+            
+            //-all: 20,30,40,50,60,70,80,90+
+            for (var i = 20; i < 90; i+=10) {
+              if(skills.filter((a) => a.level >= i).length === 23){
+                var minSkill = i;
+              }
+            }
+
+            console.log(amountMaxed)
+
             this.props.setPlayerdata({
+              achievments: {minSkill: 20, minTotalxp: 1000000, minTotallvl: 500, amountMaxed, combat: false, gatherer: false, artisan: false, support: false},
               overall: {id: 1, name: "overall", level:s.overall.level, xp:s.overall.xp, rank:s.overall.rank, color: 'black'},
               skills: [
                 {id: 2, name: "attack", level:s.attack.level, xp:s.attack.xp, rank:s.attack.rank, color: "#9b2007"},
