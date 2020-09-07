@@ -30,8 +30,10 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
 
-  let emptyPlayer = [
-      {id: 1, name: "overall", level:1, xp:0, rank:null, color: "#32a852"},
+  let emptyPlayer = {
+    overall: {id: 1, name: "overall", level:0, xp:0, rank:null, color: 'black'},
+    skills:
+    [
       {id: 2, name: "attack", level:1, xp:0, rank:null, color: "#f21202"},
       {id: 3, name: "defence", level:1, xp:0, rank:null, color: "#74e4f2"},
       {id: 4, name: "strength", level:1, xp:0, rank:null, color: "#338239"},
@@ -55,7 +57,7 @@ function App() {
       {id: 22, name: "runecraft", level:1, xp:0, rank:null, color: "#32a852"},
       {id: 23, name: "hunter", level:1, xp:0, rank:null, color: "#32a852"},
       {id: 24, name: "construction", level:1, xp:0, rank:null, color: "#32a852"}
-  ];
+  ]};
 
   const [playerData, setPlayerdata] = useState(emptyPlayer);
   const [pressed, setPressed] = useState(false);
