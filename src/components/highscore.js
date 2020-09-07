@@ -31,16 +31,11 @@ function formatXp(xp, scale){
 }
 
 function Sort(skills, state){
-  if(state == 'desc'){
-    return skills.sort((a, b) => parseFloat(b.level) - parseFloat(a.level));
-  }else if(state == 'asc'){
-    return skills.sort((a, b) => parseFloat(a.level) - parseFloat(b.level));
+  if(state === 'desc'){
+    return skills.sort((a, b) => parseFloat(b.xp) - parseFloat(a.xp));
+  }else if(state === 'asc'){
+    return skills.sort((a, b) => parseFloat(a.xp) - parseFloat(b.xp));
   }
-  //let filteredSkills
-  /*let filteredSkills = skills.sort(function(a,b) {
-    return parseFloat(a.level) - parseFloat(b.level);
-  });*/
-
 }
 
 
@@ -56,24 +51,24 @@ function Levelview(props){
           justify="flex-start"
           alignItems="center"
       >
-          <Grid item xs>
-              <Typography>
+          <Grid item xs={2}>
+              <Typography variant="h5">
                   {props.name}
               </Typography>
           </Grid>
-          <Grid item xs>
-              <Typography>
-                  {props.level}
-              </Typography>
-          </Grid>
-          <Grid item xs>
+          <Grid item xs={8}>
               <LinearProgress 
                   classes={{root: classes.root, barColorPrimary: classes.barColorPrimary}}
                   variant="determinate" 
                   value={formatXp(props.xp, 99)}
               />
           </Grid>
-          <Grid item xs>
+          <Grid item xs={2}>
+              <Typography variant="h5">
+                  {props.level}
+              </Typography>
+          </Grid>
+          {/*<Grid item xs={2}>
               <Link
                 style={{textDecoration: 'none'}}
                 to={{
@@ -87,7 +82,7 @@ function Levelview(props){
                   }}
                 >more</Button>
               </Link>
-          </Grid>
+            </Grid>*/}
       </Grid>
       </Paper>
     );
