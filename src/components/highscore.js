@@ -30,6 +30,19 @@ function formatXp(xp, scale){
     }
 }
 
+function Sort(skills, state){
+  if(state == 'desc'){
+    return skills.sort((a, b) => parseFloat(b.level) - parseFloat(a.level));
+  }else if(state == 'asc'){
+    return skills.sort((a, b) => parseFloat(a.level) - parseFloat(b.level));
+  }
+  //let filteredSkills
+  /*let filteredSkills = skills.sort(function(a,b) {
+    return parseFloat(a.level) - parseFloat(b.level);
+  });*/
+
+}
+
 
 function Levelview(props){
 
@@ -87,7 +100,7 @@ export default class Highscore extends React.Component {
     }
 
     componentDidUpdate(){
-        console.log(this.props.playerData)
+        console.log(Sort(this.props.playerData, 'desc'));
     }
 
     componentDidMount(){
