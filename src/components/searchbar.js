@@ -74,12 +74,7 @@ export default class RsnForm extends React.Component {
             }
 
             this.props.setPlayerdata({
-              achievments: {
-                minSkill,
-                minTotalxp, 
-                minTotallvl, 
-                amountMaxed
-              },
+              achievments: {minSkill, minTotalxp, minTotallvl, amountMaxed},
               overall: {id: 1, name: "overall", level:s.overall.level, xp:s.overall.xp, rank:s.overall.rank, color: 'black'},
               skills: [
                 {id: 2, name: "attack", level:s.attack.level, xp:s.attack.xp, rank:s.attack.rank, color: "#9b2007"},

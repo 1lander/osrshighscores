@@ -114,7 +114,8 @@ function Levelview(props){
   }
 
 function Overallview(props){
-    console.log(props.achievments);
+  if(props.achievments != undefined){console.log(props.achievments.amountMaxed)}
+    
     return(
     <Paper style={{marginBottom: "10px"}}>
     <Grid
@@ -137,7 +138,7 @@ function Overallview(props){
         <ExpBar xp={props.formattedXp} color={props.color}></ExpBar>
       </Grid>
     </Grid>
-    {/*<Grid
+    <Grid
         container
         direction="row"
         justify="flex-start"
@@ -146,21 +147,30 @@ function Overallview(props){
         <Grid item xs>
             <Typography>
                 Maxed stats: {props.achievments.amountMaxed.all}
+            </Typography>
+            <Typography>
+                Maxed combat skills: {props.achievments.amountMaxed.combat}
+            </Typography>
+            <Typography>
+                Maxed gather skills: {props.achievments.amountMaxed.gathering}
+            </Typography>
+            <Typography>
+                Maxed artisan skills: {props.achievments.amountMaxed.artisan}
+            </Typography>
+            <Typography>
+                Maxed support skills: {props.achievments.amountMaxed.support}
+            </Typography>
+            <Typography>
                 All stats are {props.achievments.minSkill}+
+            </Typography>
+            <Typography>
                 This player can access {props.achievments.minTotallvl} total worlds
             </Typography>
-        </Grid>
-        <Grid item xs>
-            <Typography variant="h5">
-                fdsqfdsqfdsqfds
+            <Typography>
+                This player has achieved a minimum of {props.achievments.minTotalxp} xp
             </Typography>
         </Grid>
-        <Grid item xs>
-            <Typography variant="h5">
-                gfsdgfdsgfds
-            </Typography>
-        </Grid>
-    </Grid>*/}
+    </Grid>
     </Paper>
   );
 }
@@ -183,9 +193,9 @@ export default class Highscore extends React.Component {
         const overall = this.props.playerData.overall;
         const achievments = this.props.playerData.achievments;
         const skills = this.props.playerData.skills;
+        console.log(achievments)
         return(
            <div>
-             
               <Overallview 
                 key={overall.id} 
                 name={overall.name} 
