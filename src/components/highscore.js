@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Button } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import {
     BrowserRouter as Router,
@@ -41,18 +42,6 @@ function calculateOverallXp(skills){
   })
   return maxedSkillsxp/2997919.13
 }
-/*
-function skillsToMax(skills){
-  let maxedSkills = {maxed: 0, notmaxed: 0};
-  skills.map((s) => {
-    if(s.level === 99) {
-      maxedSkills.maxed++;
-    }else{
-      maxedSkills.notmaxed++;
-    }
-  })
-  return maxedSkills
-}*/
 
 function Sort(skills, state){
   if(state === 'desc'){
@@ -62,34 +51,48 @@ function Sort(skills, state){
   }
 }
 
+function ExpBar(props){
+  const classes = useStyles(props);
+  return(
+    <Box display="flex" alignItems="center">
+      <Box width="100%" mr={1}>
+        <LinearProgress 
+            classes={{root: classes.root, barColorPrimary: classes.barColorPrimary}}
+            variant="determinate" 
+            value={props.xp}
+        />
+      </Box>
+      <Box minWidth={35}>
+        <Typography>
+          {`${Math.round(props.xp,)}%`}
+        </Typography>
+      </Box>
+    </Box>
+  )
+}
 
 function Levelview(props){
-      const classes = useStyles(props);
-      return(
-      <Paper style={{marginBottom: "10px"}}>
+    return(
+    <Paper style={{marginBottom: "10px"}}>
       <Grid
           container
           direction="row"
           justify="flex-start"
           alignItems="center"
       >
-          <Grid item xs={2}>
-              <Typography variant="h5">
-                  {props.name}
-              </Typography>
-          </Grid>
-          <Grid item xs={8}>
-              <LinearProgress 
-                  classes={{root: classes.root, barColorPrimary: classes.barColorPrimary}}
-                  variant="determinate" 
-                  value={formatXp(props.xp, 99)}
-              />
-          </Grid>
-          <Grid item xs={2}>
-              <Typography variant="h5">
-                  {props.level}
-              </Typography>
-          </Grid>
+      <Grid item xs={2}>
+        <Typography variant="h5">
+            {props.name}
+        </Typography>
+      </Grid>
+      <Grid item xs={1}>
+        <Typography variant="h5">
+            {props.level}
+        </Typography>
+      </Grid>
+      <Grid item xs={9}>
+        <ExpBar xp={formatXp(props.xp, 99)} color={props.color}></ExpBar>
+      </Grid>
           {/*<Grid item xs={2}>
               <Link
                 style={{textDecoration: 'none'}}
@@ -111,7 +114,6 @@ function Levelview(props){
   }
 
 function Overallview(props){
-    const classes = useStyles(props);
     console.log(props.achievments);
     return(
     <Paper style={{marginBottom: "10px"}}>
@@ -121,36 +123,32 @@ function Overallview(props){
         justify="flex-start"
         alignItems="center"
     >
-        <Grid item xs={2}>
-            <Typography variant="h5">
-                {props.name}
-            </Typography>
-        </Grid>
-        <Grid item xs={8}>
-            <LinearProgress 
-                classes={{root: classes.root, barColorPrimary: classes.barColorPrimary}}
-                variant="determinate" 
-                value={props.formattedXp}
-            />
-        </Grid>
-        <Grid item xs={2}>
-            <Typography variant="h5">
-                {props.level}
-            </Typography>
-        </Grid>
+      <Grid item xs={2}>
+      <Typography variant="h5">
+          {props.name}
+      </Typography>
+      </Grid>
+      <Grid item xs={1}>
+        <Typography variant="h5">
+            {props.level}
+        </Typography>
+      </Grid>
+      <Grid item xs={9}>
+        <ExpBar xp={props.formattedXp} color={props.color}></ExpBar>
+      </Grid>
     </Grid>
-    <Grid
+    {/*<Grid
         container
         direction="row"
         justify="flex-start"
         alignItems="center"
     >
         <Grid item xs>
-            {/*<Typography>
+            <Typography>
                 Maxed stats: {props.achievments.amountMaxed.all}
                 All stats are {props.achievments.minSkill}+
                 This player can access {props.achievments.minTotallvl} total worlds
-            </Typography>*/}
+            </Typography>
         </Grid>
         <Grid item xs>
             <Typography variant="h5">
@@ -162,10 +160,11 @@ function Overallview(props){
                 gfsdgfdsgfds
             </Typography>
         </Grid>
-    </Grid>
+    </Grid>*/}
     </Paper>
   );
 }
+
 export default class Highscore extends React.Component {
 
     constructor(props){
@@ -186,6 +185,7 @@ export default class Highscore extends React.Component {
         const skills = this.props.playerData.skills;
         return(
            <div>
+             
               <Overallview 
                 key={overall.id} 
                 name={overall.name} 

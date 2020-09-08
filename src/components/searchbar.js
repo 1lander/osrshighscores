@@ -39,18 +39,16 @@ export default class RsnForm extends React.Component {
             -support: agility,thieving,slayer
             */
             let skills = [];
-            let amountMaxed = {all: 0,combat: 0, artisan: 0, support: 0, gathering: 0};
+            let overallLevelThreshold = [500,750,1250,1500,1750,2000,2200,2277]
+            let overallXpThreshold = [1000000,10000000,50000000,100000000,150000000,200000000]
             let skillTypes = {
               combat: ["attack","strength","defence","magic","ranged","prayer","hitpoints"], 
               gathering: ["mining","fishing","woodcutting","hunter","farming"],
               artisan: ["cooking","smithing","fletching","firemaking","herblore","crafting","runecraft","construction"],
               support: ["agility","thieving","slayer"]
             }
-            let overallLevelThreshold = [500,750,1250,1500,1750,2000,2200,2277]
-            let overallXpThreshold = [1000000,10000000,50000000,100000000,150000000,200000000]
-
+            let amountMaxed = {all: 0,combat: 0, artisan: 0, support: 0, gathering: 0};
             for(const skill in s){
-              //calculate amount maxed for each type of skill
               for(const type in skillTypes){
                 if(skillTypes[type].includes(skill) && s[skill].level === 99) {amountMaxed[type]++; amountMaxed.all++};
               }
