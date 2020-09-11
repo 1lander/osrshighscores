@@ -4,11 +4,9 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-/*import {
-    BrowserRouter as Router,
-    Link,
-  } from "react-router-dom";*/
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
     root: {
@@ -41,14 +39,6 @@ function calculateOverallXp(skills){
   })
   return maxedSkillsxp/2997919.13
 }
-
-/*function Sort(skills, state){
-  if(state === 'desc'){
-    return skills.sort((a, b) => parseFloat(b.xp) - parseFloat(a.xp));
-  }else if(state === 'asc'){
-    return skills.sort((a, b) => parseFloat(a.xp) - parseFloat(b.xp));
-  }
-}*/
 
 function ExpBar(props){
   const classes = useStyles(props);
@@ -89,24 +79,20 @@ function Levelview(props){
             {props.level}
         </Typography>
       </Grid>
-      <Grid item xs={9}>
+      <Grid item xs={8}>
         <ExpBar xp={formatXp(props.xp, 99)} color={props.color}></ExpBar>
       </Grid>
-          {/*<Grid item xs={2}>
-              <Link
-                style={{textDecoration: 'none'}}
-                to={{
-                  pathname: "/skillinfo",
-                  skillProps: {
-                      skill: props.skill
-                }}}>
-                <Button
-                  style={{
-                    background: props.color,
-                  }}
-                >more</Button>
-              </Link>
-            </Grid>*/}
+        <Grid item xs={1}>
+          <Link
+            style={{textDecoration: 'none'}}
+            to={{
+              pathname: "/skillinfo",
+              skillProps: {
+                  skill: props.skill
+            }}}>
+            <Button>more</Button>
+          </Link>
+        </Grid>
       </Grid>
       </Paper>
     );

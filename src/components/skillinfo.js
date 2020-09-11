@@ -7,11 +7,12 @@ import { Link } from "react-router-dom";
 export default class Skillinfo extends React.Component {
 
     componentDidMount(){
-
+      console.log(this.props.location.skillProps)
     }
 
     render() {
         const { skill } = this.props.location.skillProps
+
         return(
            <div>
                <Typography>{skill.name}</Typography>
