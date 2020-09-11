@@ -42,13 +42,13 @@ function calculateOverallXp(skills){
   return maxedSkillsxp/2997919.13
 }
 
-function Sort(skills, state){
+/*function Sort(skills, state){
   if(state === 'desc'){
     return skills.sort((a, b) => parseFloat(b.xp) - parseFloat(a.xp));
   }else if(state === 'asc'){
     return skills.sort((a, b) => parseFloat(a.xp) - parseFloat(b.xp));
   }
-}
+}*/
 
 function ExpBar(props){
   const classes = useStyles(props);
@@ -174,20 +174,15 @@ function Overallview(props){
 
 export default class Highscore extends React.Component {
 
-    componentDidUpdate(){
-        Sort(this.props.playerData.skills, 'desc');
-    }
-
-    componentDidMount(){
-        console.log("mounted")
-    }
-
     render() {
         const overall = this.props.playerData.overall;
         const achievments = this.props.playerData.achievments;
         const skills = this.props.playerData.skills;
+
+        skills.sort((a, b) => parseFloat(b.xp) - parseFloat(a.xp));
+
         return(
-           <div>
+           <React.Fragment>
               <Overallview 
                 key={overall.id} 
                 name={overall.name} 
@@ -199,7 +194,7 @@ export default class Highscore extends React.Component {
                 achievments={achievments}
               />
               {skills.map((s) => <Levelview key={s.id} name={s.name} level={s.level} xp={s.xp} rank={s.rank} skill={s} color={s.color} />)}
-           </div>
+           </React.Fragment>
       );
     }
   }
