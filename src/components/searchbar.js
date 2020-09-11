@@ -2,6 +2,7 @@ import React from "react";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import { player } from '../assets/variables';
 
 export default class RsnForm extends React.Component {
   
@@ -14,14 +15,15 @@ export default class RsnForm extends React.Component {
 
   handleSubmit(e){
       e.preventDefault();
-      this.props.setPressed(true)
+      this.props.setPressed(true);
+      this.props.setPlayerdata(player);
 
       fetch(`http://localhost:8080/stats/${this.state.rsn}`)
         .then(response => {
+          this.props.setPressed(false);
           if (response.ok){
             return response.json();
           } else {
-            this.props.setPressed(false)
             return Promise.reject('This rsn does not exist or is not on the highscores')
           }
         }).then(data => {
@@ -101,7 +103,6 @@ export default class RsnForm extends React.Component {
                 {id: 23, name: "hunter", level:s.hunter.level, xp:s.hunter.xp, rank:s.hunter.rank, color: "#5c5941"},
                 {id: 24, name: "construction", level:s.construction.level, xp:s.construction.xp, rank:s.construction.rank, color: "#82745f"}
             ]});
-            this.props.setPressed(false)
         }).catch(error => console.log('error is', error));
   }
 

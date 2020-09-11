@@ -13,8 +13,9 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import { player } from './assets/variables';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   paper: {
     marginTop: 20,
     marginLeft: 150,
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
 
-  let emptyPlayer = {
+  /*let emptyPlayer = {
     achievments: {minSkill:0,minTotalxp:0,minTotallvl:0,amountMaxed:{all: 0,combat: 0, artisan: 0, support: 0, gathering: 0}},
     overall: {id: 1, name: "overall", level:0, xp:0, rank:null, color: 'black'},
     skills:
@@ -58,16 +59,18 @@ function App() {
       {id: 22, name: "runecraft", level:1, xp:0, rank:null, color: "#32a852"},
       {id: 23, name: "hunter", level:1, xp:0, rank:null, color: "#32a852"},
       {id: 24, name: "construction", level:1, xp:0, rank:null, color: "#32a852"}
-  ]};
+  ]};*/
 
-  const [playerData, setPlayerdata] = useState(emptyPlayer);
+  const [playerData, setPlayerdata] = useState(player);
   const [pressed, setPressed] = useState(false);
   const classes = useStyles();
+
+  if(pressed){console.log("reset player")}
 
   return (
     <div className="App">
       <Navbar/>
-      <Paper className={classes.paper}>
+      <Paper className={classes.paper} square>
         <Searchbar
           className={classes.searchbar}
           setPlayerdata={setPlayerdata} 
@@ -76,16 +79,15 @@ function App() {
         />
 
         {pressed ? <CircularProgress /> : <React.Fragment />}
-        {playerData && 
+        
         <Router>
           <Switch>
             <Route exact path="/">
               <Highscore playerData={playerData} />
             </Route>
-            <Route exact path="/skillinfo" component={Skillinfo}>
-            </Route>
+            <Route exact path="/skillinfo" component={Skillinfo} />
           </Switch>
-        </Router>}
+        </Router>
       </Paper>
     </div>
   );

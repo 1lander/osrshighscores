@@ -1,18 +1,10 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { Button } from '@material-ui/core';
-
-import {
-    BrowserRouter as Router,
-    Link,
-  } from "react-router-dom";
+//import { Button } from '@material-ui/core';
+//import Grid from '@material-ui/core/Grid';
+import { Link } from "react-router-dom";
 
 export default class Skillinfo extends React.Component {
-
-    constructor(props){
-        super(props)
-    }
 
     componentDidMount(){
 

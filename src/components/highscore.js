@@ -3,22 +3,21 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { Button } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
-import {
+/*import {
     BrowserRouter as Router,
     Link,
-  } from "react-router-dom";
+  } from "react-router-dom";*/
 
-  const useStyles = makeStyles({
-      root: {
-        height: '20px',
-        color: '#ccbebe'
-      },
-      barColorPrimary: { backgroundColor: props => props.color}
-    }
-  );
+const useStyles = makeStyles({
+    root: {
+      height: '20px',
+      color: '#ccbebe'
+    },
+    barColorPrimary: { backgroundColor: props => props.color}
+  }
+);
 
 function formatXp(xp, scale){
     if(scale === 99){
@@ -62,7 +61,7 @@ function ExpBar(props){
             value={props.xp}
         />
       </Box>
-      <Box minWidth={35}>
+      <Box minWidth={50}>
         <Typography>
           {`${Math.round(props.xp,)}%`}
         </Typography>
@@ -73,7 +72,7 @@ function ExpBar(props){
 
 function Levelview(props){
     return(
-    <Paper style={{marginBottom: "10px"}}>
+    <Paper style={{margin: "10px", padding: "10px"}} square>
       <Grid
           container
           direction="row"
@@ -81,7 +80,7 @@ function Levelview(props){
           alignItems="center"
       >
       <Grid item xs={2}>
-        <Typography variant="h5">
+        <Typography variant="h6">
             {props.name}
         </Typography>
       </Grid>
@@ -113,11 +112,9 @@ function Levelview(props){
     );
   }
 
-function Overallview(props){
-  if(props.achievments != undefined){console.log(props.achievments.amountMaxed)}
-    
+function Overallview(props){    
     return(
-    <Paper style={{marginBottom: "10px"}}>
+    <Paper style={{margin: "10px"}} square>
     <Grid
         container
         direction="row"
@@ -177,10 +174,6 @@ function Overallview(props){
 
 export default class Highscore extends React.Component {
 
-    constructor(props){
-        super(props)
-    }
-
     componentDidUpdate(){
         Sort(this.props.playerData.skills, 'desc');
     }
@@ -193,7 +186,6 @@ export default class Highscore extends React.Component {
         const overall = this.props.playerData.overall;
         const achievments = this.props.playerData.achievments;
         const skills = this.props.playerData.skills;
-        console.log(achievments)
         return(
            <div>
               <Overallview 
