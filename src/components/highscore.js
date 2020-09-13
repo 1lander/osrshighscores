@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -172,7 +172,7 @@ export default class Highscore extends React.Component {
         skills.sort((a, b) => parseFloat(b.xp) - parseFloat(a.xp));
 
         return(
-           <React.Fragment>
+           <Fragment>
               <Overallview 
                 rsn={name}
                 key={overall.id} 
@@ -185,7 +185,7 @@ export default class Highscore extends React.Component {
                 achievments={achievments}
               />
               {skills.map((s) => <Levelview key={s.id} name={s.name} level={s.level} xp={s.xp} rank={s.rank} skill={s} color={s.color} />)}
-           </React.Fragment>
+           </Fragment>
       );
     }
   }

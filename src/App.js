@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import './App.css';
 import './components/highscore'
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Navbar from './components/navbar';
 import Highscore from './components/highscore';
 import Searchbar from './components/searchbar';
@@ -32,21 +31,16 @@ const useStyles = makeStyles(() => ({
 function App() {
 
   const [playerData, setPlayerdata] = useState(player);
-  const [pressed, setPressed] = useState(false);
   const classes = useStyles();
 
   return (
-    <div className="App">
-      <Navbar/>
-      
+    <Fragment className="App">
+        <Navbar/>
         <Searchbar
           className={classes.searchbar}
           setPlayerdata={setPlayerdata} 
           playerData={playerData}
-          setPressed={setPressed}
         />
-
-        {pressed ? <CircularProgress /> : <React.Fragment />}
         <Paper className={classes.paper} square>
         <Router>
           <Switch>
@@ -57,7 +51,7 @@ function App() {
           </Switch>
         </Router>
       </Paper>
-    </div>
+    </Fragment>
   );
 }
 
