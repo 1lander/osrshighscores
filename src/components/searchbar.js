@@ -76,6 +76,7 @@ export default class RsnForm extends React.Component {
             }
 
             this.props.setPlayerdata({
+              name: this.state.rsn,
               achievments: {minSkill, minTotalxp, minTotallvl, amountMaxed},
               overall: {id: 1, name: "overall", level:s.overall.level, xp:s.overall.xp, rank:s.overall.rank, color: 'black'},
               skills: [

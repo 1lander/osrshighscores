@@ -5,12 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  bar: {
-    colorPrimary: "black"
-  },
+  colorPrimary: { backgroundColor: '#5d616b'},
   title: {
     flexGrow: 1,
     display: 'none',
@@ -22,16 +17,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar() {
   const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <AppBar position="static" className={classes.bar}>
-        <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Highscores
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </div>
+    <AppBar position="static" classes={{colorPrimary: classes.colorPrimary}}>
+      <Toolbar>
+        <Typography className={classes.title} variant="h6" noWrap>
+          Max calculator
+        </Typography>
+      </Toolbar>
+    </AppBar>
   );
 }

@@ -1,4 +1,5 @@
 export const player = {
+  name: "N/A",
   achievments: {minSkill:0,minTotalxp:0,minTotallvl:0,amountMaxed:{all: 0,combat: 0, artisan: 0, support: 0, gathering: 0}},
   overall: {id: 1, name: "overall", level:0, xp:0, rank:null, color: 'black'},
   skills:

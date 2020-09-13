@@ -17,6 +17,7 @@ import { player } from './assets/variables';
 
 const useStyles = makeStyles(() => ({
   paper: {
+    padding: 10,
     marginTop: 20,
     marginLeft: 150,
     marginRight: 150,
@@ -25,7 +26,6 @@ const useStyles = makeStyles(() => ({
   searchbar: {
     marginRight: "50%",
     marginLeft: 50
-
   },
 }));
 
@@ -38,7 +38,7 @@ function App() {
   return (
     <div className="App">
       <Navbar/>
-      <Paper className={classes.paper} square>
+      
         <Searchbar
           className={classes.searchbar}
           setPlayerdata={setPlayerdata} 
@@ -47,7 +47,7 @@ function App() {
         />
 
         {pressed ? <CircularProgress /> : <React.Fragment />}
-        
+        <Paper className={classes.paper} square>
         <Router>
           <Switch>
             <Route exact path="/">

@@ -13,7 +13,8 @@ const useStyles = makeStyles({
       height: '20px',
       color: '#ccbebe'
     },
-    barColorPrimary: { backgroundColor: props => props.color}
+    barColorPrimary: { backgroundColor: props => props.color},
+    level: { padding: "10px", margin: "10px" }
   }
 );
 
@@ -61,8 +62,9 @@ function ExpBar(props){
 }
 
 function Levelview(props){
+    const classes = useStyles(props);
     return(
-    <Paper style={{margin: "10px", padding: "10px"}} square>
+    <Paper className={classes.level} square>
       <Grid
           container
           direction="row"
@@ -98,9 +100,10 @@ function Levelview(props){
     );
   }
 
-function Overallview(props){    
+function Overallview(props){
+    const classes = useStyles(props);
     return(
-    <Paper style={{margin: "10px"}} square>
+    <Paper className={classes.level} square>
     <Grid
         container
         direction="row"
@@ -109,7 +112,7 @@ function Overallview(props){
     >
       <Grid item xs={2}>
       <Typography variant="h5">
-          {props.name}
+          {props.rsn}
       </Typography>
       </Grid>
       <Grid item xs={1}>
@@ -164,12 +167,14 @@ export default class Highscore extends React.Component {
         const overall = this.props.playerData.overall;
         const achievments = this.props.playerData.achievments;
         const skills = this.props.playerData.skills;
+        const name = this.props.playerData.name;
 
         skills.sort((a, b) => parseFloat(b.xp) - parseFloat(a.xp));
 
         return(
            <React.Fragment>
               <Overallview 
+                rsn={name}
                 key={overall.id} 
                 name={overall.name} 
                 level={overall.level} 
