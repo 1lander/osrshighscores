@@ -4,6 +4,7 @@ import './components/highscore'
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Navbar from './components/navbar';
+import Footer from './components/footer';
 import Highscore from './components/highscore';
 import Searchbar from './components/searchbar';
 import Skillinfo from './components/skillinfo';
@@ -22,10 +23,14 @@ const useStyles = makeStyles(() => ({
     marginRight: 150,
     backgroundColor: "#dedcdc"
   },
-  searchbar: {
-    marginRight: "50%",
-    marginLeft: 50
-  },
+  paper2: {
+    paddingTop: 15,
+    paddingBottom: 15,
+    marginTop: 20,
+    marginLeft: 150,
+    marginRight: 150,
+    backgroundColor: "#ffffff"
+  }
 }));
 
 function App() {
@@ -34,13 +39,15 @@ function App() {
   const classes = useStyles();
 
   return (
-    <Fragment className="App">
+    <Fragment>
         <Navbar/>
-        <Searchbar
-          className={classes.searchbar}
-          setPlayerdata={setPlayerdata} 
-          playerData={playerData}
-        />
+        <Paper className={classes.paper2} square elevation={0}>
+          <Searchbar
+            setPlayerdata={setPlayerdata} 
+            playerData={playerData}
+          />
+        </Paper>
+        
         <Paper className={classes.paper} square>
         <Router>
           <Switch>
@@ -51,6 +58,7 @@ function App() {
           </Switch>
         </Router>
       </Paper>
+      <Footer/>
     </Fragment>
   );
 }

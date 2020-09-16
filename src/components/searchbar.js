@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
@@ -25,7 +25,7 @@ export default class RsnForm extends React.Component {
           if (response.ok){
             return response.json();
           } else {
-            return Promise.reject('This rsn does not exist or is not on the highscores')
+            return Promise.reject('This player does not exist or is not on the highscores')
           }
         }).then(data => {
             let s = data.main.skills;
@@ -115,21 +115,23 @@ export default class RsnForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <Grid container>
-          <Grid item>
-            <TextField 
-              id="rsnInput" 
-              label="rsn" 
-              variant="outlined"
-              value={this.state.rsn}
-              onChange={this.handlechange}
-            />
+          <Grid container>
+            <Grid item>
+              <TextField 
+                id="rsnInput" 
+                label="rsn" 
+                variant="outlined"
+                value={this.state.rsn}
+                onChange={this.handlechange}
+              />
+            </Grid>
+            <Grid item>
+              {this.state.pressed ? <CircularProgress color='inherit' size={50}/> : <Fragment />}
+            </Grid>
           </Grid>
-          <Grid item>
-            <Button variant="contained" color="primary" type="submit">Lookup</Button>
+          <Grid container style={{paddingTop:'15px'}}>
+            <Button variant="contained" color="default" type="submit">Lookup</Button>
           </Grid>
-          {this.state.pressed ? <CircularProgress /> : <React.Fragment />}
-        </Grid>
       </form>
     );
   }
