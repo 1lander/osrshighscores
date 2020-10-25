@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/osrshighscore/static/css/main.8838ba68.chunk.css",
+    "main.js": "/osrshighscore/static/js/main.80fc1b96.chunk.js",
+    "main.js.map": "/osrshighscore/static/js/main.80fc1b96.chunk.js.map",
+    "runtime-main.js": "/osrshighscore/static/js/runtime-main.192fea67.js",
+    "runtime-main.js.map": "/osrshighscore/static/js/runtime-main.192fea67.js.map",
+    "static/js/2.6a0f3311.chunk.js": "/osrshighscore/static/js/2.6a0f3311.chunk.js",
+    "static/js/2.6a0f3311.chunk.js.map": "/osrshighscore/static/js/2.6a0f3311.chunk.js.map",
+    "index.html": "/osrshighscore/index.html",
+    "precache-manifest.29f6253a0967ed15857ce5ee6326155c.js": "/osrshighscore/precache-manifest.29f6253a0967ed15857ce5ee6326155c.js",
+    "service-worker.js": "/osrshighscore/service-worker.js",
+    "static/css/main.8838ba68.chunk.css.map": "/osrshighscore/static/css/main.8838ba68.chunk.css.map",
+    "static/js/2.6a0f3311.chunk.js.LICENSE.txt": "/osrshighscore/static/js/2.6a0f3311.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.192fea67.js",
+    "static/js/2.6a0f3311.chunk.js",
+    "static/css/main.8838ba68.chunk.css",
+    "static/js/main.80fc1b96.chunk.js"
+  ]
+}
