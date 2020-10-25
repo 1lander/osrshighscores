@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/osrshighscores/static/css/main.8838ba68.chunk.css",
-    "main.js": "/osrshighscores/static/js/main.c51e4454.chunk.js",
-    "main.js.map": "/osrshighscores/static/js/main.c51e4454.chunk.js.map",
+    "main.js": "/osrshighscores/static/js/main.c99f13b4.chunk.js",
+    "main.js.map": "/osrshighscores/static/js/main.c99f13b4.chunk.js.map",
     "runtime-main.js": "/osrshighscores/static/js/runtime-main.b54a2267.js",
     "runtime-main.js.map": "/osrshighscores/static/js/runtime-main.b54a2267.js.map",
-    "static/js/2.6a0f3311.chunk.js": "/osrshighscores/static/js/2.6a0f3311.chunk.js",
-    "static/js/2.6a0f3311.chunk.js.map": "/osrshighscores/static/js/2.6a0f3311.chunk.js.map",
+    "static/js/2.13df28c8.chunk.js": "/osrshighscores/static/js/2.13df28c8.chunk.js",
+    "static/js/2.13df28c8.chunk.js.map": "/osrshighscores/static/js/2.13df28c8.chunk.js.map",
     "index.html": "/osrshighscores/index.html",
-    "precache-manifest.35f4d58bf53fa2d6358593fc6f2aeee9.js": "/osrshighscores/precache-manifest.35f4d58bf53fa2d6358593fc6f2aeee9.js",
+    "precache-manifest.6766f4e47432a3f8d5192b06842703f7.js": "/osrshighscores/precache-manifest.6766f4e47432a3f8d5192b06842703f7.js",
     "service-worker.js": "/osrshighscores/service-worker.js",
     "static/css/main.8838ba68.chunk.css.map": "/osrshighscores/static/css/main.8838ba68.chunk.css.map",
-    "static/js/2.6a0f3311.chunk.js.LICENSE.txt": "/osrshighscores/static/js/2.6a0f3311.chunk.js.LICENSE.txt"
+    "static/js/2.13df28c8.chunk.js.LICENSE.txt": "/osrshighscores/static/js/2.13df28c8.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b54a2267.js",
-    "static/js/2.6a0f3311.chunk.js",
+    "static/js/2.13df28c8.chunk.js",
     "static/css/main.8838ba68.chunk.css",
-    "static/js/main.c51e4454.chunk.js"
+    "static/js/main.c99f13b4.chunk.js"
   ]
 }
