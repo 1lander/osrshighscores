@@ -51,7 +51,7 @@ function App() {
         <Paper className={classes.paper} square>
         <Router>
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/osrshighscore">
               <Highscore playerData={playerData} />
             </Route>
             <Route exact path="/skillinfo" component={Skillinfo} />
