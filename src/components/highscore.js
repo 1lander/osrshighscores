@@ -81,10 +81,10 @@ function Levelview(props){
             {props.level}
         </Typography>
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={9}>
         <ExpBar xp={formatXp(props.xp, 99)} color={props.color}></ExpBar>
       </Grid>
-        <Grid item xs={1}>
+        {/*<Grid item xs={1}>
           <Link
             style={{textDecoration: 'none'}}
             to={{
@@ -94,7 +94,7 @@ function Levelview(props){
             }}}>
             <Button>more</Button>
           </Link>
-        </Grid>
+        </Grid>*/}
       </Grid>
       </Paper>
     );
