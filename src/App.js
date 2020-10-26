@@ -34,8 +34,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 function App() {
-
   const [playerData, setPlayerdata] = useState(player);
+  const [type, setType] = useState("hiscore_oldschool");
   const classes = useStyles();
 
   return (
@@ -45,6 +45,8 @@ function App() {
           <Searchbar
             setPlayerdata={setPlayerdata} 
             playerData={playerData}
+            setType={setType}
+            type={type}
           />
         </Paper>
         

@@ -43,8 +43,14 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/:rsn", (req, res) => {
-  fetch(`https://secure.runescape.com/m=hiscore_oldschool/index_lite.ws?player=${req.params.rsn}`)
+/*
+  types
+  -hiscore_oldschool_seasonal
+  -hiscore_oldschool
+*/
+
+app.get("/:type/:rsn", (req, res) => {
+  fetch(`https://secure.runescape.com/m=${req.params.type}/index_lite.ws?player=${req.params.rsn}`)
     .then(res => res.text())
     .then(data => {
       const skillData = [];
@@ -93,5 +99,6 @@ app.get("/:rsn", (req, res) => {
       res.status(404).send({ status: 404, error: err });
     });
 });
+
 
 app.listen(port, () => console.log(`Highscores api listening on port ${port}!`));
