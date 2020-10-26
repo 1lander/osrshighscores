@@ -55,7 +55,7 @@ app.get("/:type/:rsn", (req, res) => {
     .then(data => {
       const skillData = [];
       const skills = [];
-      data.split("\n",24).map(skill => skillData.push(skill.split(',')));
+      data.split("\n",25).map(skill => skillData.push(skill.split(',')));
 
       for (i = 0; i < 23; i++) {
         skills.push({id: i, name: skillOrder[i][0], level:parseInt(skillData[i+1][1]), xp:parseInt(skillData[i+1][2]), rank:parseInt(skillData[i+1][0]), color: skillOrder[i][1]})
@@ -91,6 +91,7 @@ app.get("/:type/:rsn", (req, res) => {
         name: req.params.rsn,
         achievments: {minSkill:0, minTotalxp:0, minTotallvl:0, amountMaxed:0},
         overall: {id: 0, name: "Overall", level:parseInt(skillData[0][1]), xp:parseInt(skillData[0][2]), rank:parseInt(skillData[0][0]), color: 'black'},
+        leaguepoints: {rank: skillData[24][0], points: skillData[24][1]},
         skills
       });
 

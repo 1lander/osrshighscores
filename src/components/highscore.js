@@ -129,6 +129,12 @@ function Overallview(props){
         alignItems="center"
     >
         <Grid item xs>
+          {props.type === "hiscore_oldschool_seasonal" ? 
+            <Typography>
+              leaguepoints: {props.leaguepoints.points}
+            </Typography> : <Fragment/>
+          }
+            
             <Typography>
                 Maxed stats: {props.achievments.amountMaxed.all}
             </Typography>
@@ -161,6 +167,7 @@ function Overallview(props){
 
 export default function Highscore(props){
     const overall = props.playerData.overall;
+    const leaguepoints = props.playerData.leaguepoints;
     const achievments = props.playerData.achievments;
     const skills = props.playerData.skills;
     const name = props.playerData.name;
@@ -179,6 +186,8 @@ export default function Highscore(props){
           color={overall.color} 
           formattedXp={calculateOverallXp(skills)}
           achievments={achievments}
+          leaguepoints={leaguepoints}
+          type={props.type}
         />
         {skills.map((s) => <Levelview key={s.id} name={s.name} level={s.level} xp={s.xp} rank={s.rank} skill={s} color={s.color} />)}
       </Fragment>

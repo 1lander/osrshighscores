@@ -54,7 +54,10 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/osrshighscores">
-              <Highscore playerData={playerData} />
+              <Highscore 
+                playerData={playerData}
+                type={type}
+              />
             </Route>
             <Route exact path="/skillinfo" component={Skillinfo} />
           </Switch>
