@@ -4,9 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
     root: {
@@ -161,31 +159,28 @@ function Overallview(props){
   );
 }
 
-export default class Highscore extends React.Component {
+export default function Highscore(props){
+    const overall = props.playerData.overall;
+    const achievments = props.playerData.achievments;
+    const skills = props.playerData.skills;
+    const name = props.playerData.name;
+    
+    skills.sort((a, b) => parseFloat(b.xp) - parseFloat(a.xp));
 
-    render() {
-        const overall = this.props.playerData.overall;
-        const achievments = this.props.playerData.achievments;
-        const skills = this.props.playerData.skills;
-        const name = this.props.playerData.name;
-        
-        skills.sort((a, b) => parseFloat(b.xp) - parseFloat(a.xp));
-
-        return(
-           <Fragment>
-              <Overallview 
-                rsn={name}
-                key={overall.id} 
-                name={overall.name} 
-                level={overall.level} 
-                xp={overall.xp} 
-                rank={overall.rank} 
-                color={overall.color} 
-                formattedXp={calculateOverallXp(skills)}
-                achievments={achievments}
-              />
-              {skills.map((s) => <Levelview key={s.id} name={s.name} level={s.level} xp={s.xp} rank={s.rank} skill={s} color={s.color} />)}
-           </Fragment>
-      );
-    }
-  }
+    return(
+      <Fragment>
+        <Overallview 
+          rsn={name}
+          key={overall.id} 
+          name={overall.name} 
+          level={overall.level} 
+          xp={overall.xp} 
+          rank={overall.rank} 
+          color={overall.color} 
+          formattedXp={calculateOverallXp(skills)}
+          achievments={achievments}
+        />
+        {skills.map((s) => <Levelview key={s.id} name={s.name} level={s.level} xp={s.xp} rank={s.rank} skill={s} color={s.color} />)}
+      </Fragment>
+  );
+}
