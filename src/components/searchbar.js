@@ -18,8 +18,8 @@ export default class RsnForm extends React.Component {
       e.preventDefault();
       this.setState({pressed: true});
       this.props.setPlayerdata(player);
-
-      fetch(`http://localhost:8080/stats/${this.state.rsn}`)
+      
+      fetch(`http://localhost:8080/${this.state.rsn}`)
         .then(response => {
           this.setState({pressed: false});
           if (response.ok){
@@ -28,19 +28,9 @@ export default class RsnForm extends React.Component {
             return Promise.reject('This player does not exist or is not on the highscores')
           }
         }).then(data => {
-            let s = data.main.skills;
-            /*
-            MEDALS:
-            -all: 20,30,40,50,60,70,80,90+
-            -overall: 1m,10m,50m,100m,150m,200m
-            -total lvl: 500,750,1250,1500,1750,2000,2200,2277(MAXED)
-            -amount maxed: 1,2,5,10,15,20,MAXED
-
-            -maxed combat: 99 mage,rangen,attack,strength,defence,prayer
-            -gathering: 99 mining,fishing,woodcutting,hunter,farming
-            -artisan: cooking,smithing,fletching,firemaking,herblore,crafting,runecrafting,construction
-            -support: agility,thieving,slayer
-            */
+            this.props.setPlayerdata(data);
+            
+            /*let s = data.main.skills;
             let skills = [];
             let overallLevelThreshold = [500,750,1250,1500,1750,2000,2200,2277]
             let overallXpThreshold = [1000000,10000000,50000000,100000000,150000000,200000000]
@@ -104,7 +94,7 @@ export default class RsnForm extends React.Component {
                 {id: 22, name: "runecraft", level:s.runecraft.level, xp:s.runecraft.xp, rank:s.runecraft.rank, color: "#a4881b"},
                 {id: 23, name: "hunter", level:s.hunter.level, xp:s.hunter.xp, rank:s.hunter.rank, color: "#5c5941"},
                 {id: 24, name: "construction", level:s.construction.level, xp:s.construction.xp, rank:s.construction.rank, color: "#82745f"}
-            ]});
+            ]*/
         }).catch(error => console.log('error is', error));
   }
 

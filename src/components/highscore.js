@@ -168,7 +168,7 @@ export default class Highscore extends React.Component {
         const achievments = this.props.playerData.achievments;
         const skills = this.props.playerData.skills;
         const name = this.props.playerData.name;
-
+        
         skills.sort((a, b) => parseFloat(b.xp) - parseFloat(a.xp));
 
         return(
